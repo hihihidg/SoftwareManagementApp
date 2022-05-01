@@ -1,0 +1,24 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<div class="text-center">
+  <ul>
+
+  <h1>Available Software</h1>
+
+  {% if software_list %}
+
+    {% for soft in  software_list%}
+      <p>   {{soft.title}} <a href="{% url 'software-detail' soft.pk %}"> <br> Description</a> 
+  <br> </p>
+    {% endfor %}
+
+  {% else %}
+    <p>You have no available software</p>
+  {% endif %}
+
+</ul>
+
+</div>
+    
+{% endblock %}

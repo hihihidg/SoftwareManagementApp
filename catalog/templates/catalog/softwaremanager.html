@@ -1,0 +1,28 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+  
+  {% if software_list %}
+  <ul>
+    <h1>Software Manager</h1>
+    <h5>Edit the available softwares</h5>
+
+    {% for soft in  software_list%}
+      <p>{{soft.title}} <br> <a href="{% url 'software-update' soft.id %}">Update</a>
+        <a href="{% url 'software-delete' soft.id %}">Delete <br></a></p>
+
+    {% endfor %}
+   
+  </ul>
+
+  {% else %}
+    <p>You have no available software</p>
+  {% endif %}
+  <ul>
+  <h3>Add a new available software</h3>
+  <a href="{% url 'software-create'%}">Add Software</a> 
+  <h3> <br>Add a license key to a software</h3>
+<a href="{% url 'softwareinstance-create'%}">Add License Key</a> 
+  </ul>
+    
+{% endblock %}

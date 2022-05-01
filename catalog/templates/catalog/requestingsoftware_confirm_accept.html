@@ -1,0 +1,21 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<ul>
+<p>Select the license key for {{requestingsoftware_instance.software}} you wish to send to {{requestingsoftware_instance.name}}</p>
+    {% if requestingsoftware_instance.software.softwareinstance_set.all %}
+    {% if requestingsoftware_instance.any_avaiable %}
+    {% for copy in requestingsoftware_instance.software.softwareinstance_set.all %}
+        {% if not copy.is_overdue %}
+            {% if copy.is_available %}
+                <p> Available License Key: <a href="{% url 'softwarerequests-forward' copy.pk %}">  {{ copy.license_key }} </a>  <br> Renewal Date: {{copy.renewal_date}}</p>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% else %}
+        <p>No available license keys</p>
+    {% endif %}
+    {% endif %}
+
+</ul>
+{% endblock %}

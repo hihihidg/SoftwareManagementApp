@@ -1,0 +1,24 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<div class="text-center">
+  <ul>
+
+  <h1> Pending Software Requests</h1>
+
+  {% if requestingsoftware_list %}
+
+    {% for soft in  requestingsoftware_list%}
+      <p>  {{soft.name}} from {{soft.department}} is requesting {{soft.software.title}} <a href="{% url 'softwarerequests-detail' soft.id %}"> <br> Details</a> 
+        <a href="{% url 'softwarerequests-accept' soft.id %}"> <br> Approve</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'softwarerequests-decline' soft.id %}">  Decline</a> </p>
+    {% endfor %}
+
+  {% else %}
+    <p>You have no pending software requests</p>
+  {% endif %}
+
+</ul>
+
+</div>
+    
+{% endblock %}

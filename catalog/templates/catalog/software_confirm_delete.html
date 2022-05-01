@@ -1,0 +1,14 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<ul>
+<h1>Delete Software</h1>
+
+<p>Are you sure you want to delete the software: {{ software }}? (ALL instances of {{ software }} will be deleted)</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes">
+</form>
+</ul>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<ul>
+<h1>Remove </h1>
+
+<p> Do you wish to remove the following license key: {{softwareinstance.license_key}} </p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes">
+</form>
+<br> 
+<a href="{% url 'availablesoftware' %}">  
+  <input type="submit" value = "No"/>
+
+ </a>
+</ul>
+{% endblock %}

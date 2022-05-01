@@ -1,0 +1,12 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<ul>
+<p>Are sure you want to decline the request for {{requestingsoftware.software}} by {{requestingsoftware.name}}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes">
+</form>
+</ul>
+{% endblock %}

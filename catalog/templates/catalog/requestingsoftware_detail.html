@@ -1,0 +1,27 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<ul>
+  <h1>Name: {{ requestingsoftware.name }}</h1>
+  <h4>Department: {{ requestingsoftware.department }}</h4>
+  <h4>Contact Email: {{ requestingsoftware.email }}</h4>
+  <h4>Account Email: {{ requestingsoftware.user.email }}</h4>
+  <h4>Software Requested: {{ requestingsoftware.software }}</h4>
+  <h4>Associated License Keys for {{requestingsoftware.software}}: </h4>
+  {% if requestingsoftware.software.softwareinstance_set.all %}
+    {% for copy in requestingsoftware.software.softwareinstance_set.all %}
+        {% if copy.is_overdue %}
+        <div class="text-danger"> <p> Overdue License Key: {{ copy.license_key }} Renewal Cost: {{copy.renewal_cost}}</p> </div>
+        {% else %}
+            <p> Available License Key: {{ copy.license_key }}</p>
+        {% endif %}
+    {% endfor %}
+    {% else %}
+        <p>No available license keys</p>
+  {% endif %}
+
+
+  <p><strong>Reason for Request:</strong> {{ requestingsoftware.reason }}</p>
+
+</ul>
+{% endblock %}

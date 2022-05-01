@@ -1,0 +1,27 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+  <ul>
+  <h3> A list of license keys for {{software}}</h3>
+  <p>(red means the license key is past renewal date)</p>
+  {% if softwareinstance_list %}
+
+    {% for softinst in  softwareinstance_list%}
+    <li class="{% if softinst.is_overdue %} text-danger {% endif %}"> 
+      License Key: {{ softinst.license_key}}
+      <br> Renewal Date: {{ softinst.renewal_date }} 
+      <br> Renewal Cost: {{softinst.renewal_cost}} 
+      <br> User: {{softinst.user}}
+      <br> Status:  {% if softinst.is_available %} Available {% else %} In use  {% endif %}
+      <br><a href="{% url 'softwareinstance-update' softinst.pk %}">Update</a>
+      <a href="{% url 'softwareinstance-delete' softinst.pk %}">Remove <br></a></p> </li>
+     
+    {% endfor %}
+
+  {% else %}
+    <p>No existing license keys. Add one in Manager Actions.</p>
+  {% endif %}
+</ul>
+
+    
+{% endblock %}

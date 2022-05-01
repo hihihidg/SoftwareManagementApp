@@ -1,0 +1,24 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<div class="text-center">
+  <ul>
+
+  <h1>Software Liscene Keys</h1>
+
+  {% if software_list %}
+
+    {% for soft in  software_list%}
+      <p>   {{soft.title}}'s <a href="{% url 'mysoftware-instances' soft.pk %}"> License Keys</a> <br>  
+  <br> </p>
+    {% endfor %}
+
+  {% else %}
+    <p>You have no available software</p>
+  {% endif %}
+
+</ul>
+
+</div>
+    
+{% endblock %}

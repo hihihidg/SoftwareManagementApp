@@ -1,0 +1,15 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<ul>
+<h2>Software Request</h2>
+<p> Fill out the form to submit a software request</p>
+<form action="" method="post">
+  {% csrf_token %}
+  <table>
+  {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit">
+</form>
+</ul>
+{% endblock %}
